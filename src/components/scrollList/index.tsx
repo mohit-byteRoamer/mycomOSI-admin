@@ -22,8 +22,8 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
                 debounce(() => {
                     setCurrentPage((prev) => prev + 1)
                 })
-            }else{
-            SetLoader(false)
+            } else {
+                SetLoader(false)
 
             }
         }
@@ -32,8 +32,8 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
     useEffect(() => {
         if (currentPage > 1) {
             const newData = dummyData.slice(0, currentPage * ITEMS_PER_PAGE);
-            SetLoader(false)
             setPaginatedData(newData);
+            SetLoader(false)
         }
     }, [currentPage]);
 
@@ -51,7 +51,9 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
                     >
                         {title}
                     </Typography>
+
                 </Box>
+
                 <Box
                     ref={scrollRef}
                     sx={Style.scrollContainer}
@@ -67,10 +69,10 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
                             </Typography>
                         </Box>
                     ))}
-                    <div className="flex justify-center">
-                        {loader && <CircularProgress size={20} className="!text-primary"/>}
-                    </div>
                 </Box>
+                <div className="flex justify-center h-6">
+                    {loader && <CircularProgress size={20} className="!text-primary" />}
+                </div>
             </Box>
         </Grid>
     )
