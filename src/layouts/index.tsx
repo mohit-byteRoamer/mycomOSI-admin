@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Typography, Drawer, Box, Link, Breadcrumbs, useMediaQuery, useTheme } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+
 import Style from "./style";
 import Sidebar from "../components/Sidebar";
 import Dashboard from "../components/Dashboard";
+import { StaticBreadcrumbs } from "./staticBreadcrumbs";
 
 
 function AppLayout() {
@@ -18,6 +17,8 @@ function AppLayout() {
 
     return (
         <Box sx={Style.container}>
+
+            {/* D R A W E R  S E C T I O N */}
             <Drawer
                 variant="persistent"
                 open={open}
@@ -26,24 +27,12 @@ function AppLayout() {
                 <Sidebar isOpen={open} isXs={isXs} drawerHandler={handleClick} />
             </Drawer>
 
+            {/* C O N T E N T  S E C T I O N */}
             <Box sx={{
                 ...Style.leftSideContainer,
                 display: { xs: open ? "none" : "block", sm: "block" },
             }}>
-                <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-                    <Link underline="hover" color="inherit" href="/" sx={{ display: "flex", alignItems: "center" }}>
-                        <HomeIcon sx={{ mr: 0.5 }} fontSize="small" />
-                        Home
-                    </Link>
-                    <Link underline="hover" color="inherit" href="/web-aiops">
-                        Web-Aiops
-                    </Link>
-                    <Link underline="hover" color="inherit" href="/dashboard">
-                        Dashboard
-                    </Link>
-                    <Typography color="text.primary">PmuNavigationView</Typography>
-                    <MenuIcon sx={{ ml: 5 }} fontSize="small" onClick={handleClick} />
-                </Breadcrumbs>
+                <StaticBreadcrumbs handleClick={handleClick} />
                 <Dashboard sideBarOpen={open} />
             </Box>
         </Box>

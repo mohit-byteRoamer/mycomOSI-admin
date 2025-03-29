@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Box, CircularProgress, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { memo, useEffect, useRef, useState } from "react";
 import Style from "./style";
 import { debounce } from "../../utils/global-func";
@@ -10,15 +10,21 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
     const scrollRef = useRef(null);
     const theme = useTheme();
     const isXs = useMediaQuery(theme.breakpoints.down("md"))
-
+    const [loader, SetLoader] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = Math.ceil(dummyData.length / ITEMS_PER_PAGE);
     const [paginatedData, setPaginatedData] = useState(dummyData?.slice(0, ITEMS_PER_PAGE));
     const handleScroll = () => {
         if (scrollRef.current) {
+            SetLoader(true)
             const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
             if (scrollTop + clientHeight >= scrollHeight - 10 && currentPage < totalPages) {
-                debounce(() => setCurrentPage((prev) => prev + 1))
+                debounce(() => {
+                    setCurrentPage((prev) => prev + 1)
+                })
+            }else{
+            SetLoader(false)
+
             }
         }
     };
@@ -26,9 +32,11 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
     useEffect(() => {
         if (currentPage > 1) {
             const newData = dummyData.slice(0, currentPage * ITEMS_PER_PAGE);
+            SetLoader(false)
             setPaginatedData(newData);
         }
     }, [currentPage]);
+
     return (
         <Grid
             sx={{
@@ -59,6 +67,9 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
                             </Typography>
                         </Box>
                     ))}
+                    <div className="flex justify-center">
+                        {loader && <CircularProgress size={20} className="!text-primary"/>}
+                    </div>
                 </Box>
             </Box>
         </Grid>
