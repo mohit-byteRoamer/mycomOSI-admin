@@ -2,10 +2,11 @@ import { Box, Grid, Typography, TextField, IconButton, useTheme, useMediaQuery }
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Style from "./style"
 import ScrollList from "../scrollList";
-import { dummyData, ITEMS_PER_PAGE } from "../../constants/dummy";
+import { dummyData } from "../../constants/dummy";
+import { DashboardProps } from "../type";
 
 
-function Dashboard({ sideBarOpen }) {
+function Dashboard({ sideBarOpen }: DashboardProps) {
     const theme = useTheme();
     const isXs = useMediaQuery(theme.breakpoints.down("md"))
     return (
@@ -15,7 +16,6 @@ function Dashboard({ sideBarOpen }) {
         }}>
             {/* Left Section */}
             <Grid
-                item
                 sx={Style.leftSection}
             >
                 {/* Title Box */}
@@ -42,17 +42,15 @@ function Dashboard({ sideBarOpen }) {
 
                 {/* Three Sections */}
                 <Grid container spacing={1} sx={{ width: "100%" }}>
-                    <ScrollList sideBarOpen={sideBarOpen} title={"PMU Tree"} dummyData={dummyData.pmuTree} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
-                    <ScrollList sideBarOpen={sideBarOpen} title={"MOI Tree"} dummyData={dummyData.moiTree} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
-                    <ScrollList sideBarOpen={sideBarOpen} title={"KPI's Tree"} dummyData={dummyData.kpiTree} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
+                    <ScrollList sideBarOpen={sideBarOpen} title={"PMU Tree"} dummyData={dummyData.pmuTree} />
+                    <ScrollList sideBarOpen={sideBarOpen} title={"MOI Tree"} dummyData={dummyData.moiTree} />
+                    <ScrollList sideBarOpen={sideBarOpen} title={"KPI's Tree"} dummyData={dummyData.kpiTree} />
                 </Grid>
 
             </Grid>
 
             {/* Right Section */}
             <Grid
-                item
-                md={6}
                 sx={Style.rightSection}
             >
                 <Box sx={Style.rightWraper} >
@@ -109,6 +107,7 @@ function Dashboard({ sideBarOpen }) {
                     </Box>
                 </Box>
             </Grid>
+
 
 
         </Box >);

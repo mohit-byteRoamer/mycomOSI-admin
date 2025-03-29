@@ -2,11 +2,12 @@ import { List, ListItem, ListItemIcon, ListItemText, Divider, Typography, Box, B
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import StorageIcon from "@mui/icons-material/Storage";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import { SidebarProps } from "../type";
 
-function Sidebar({ isXs, drawerHandler, isOpen }) {
+function Sidebar({ isXs, drawerHandler, isOpen }: SidebarProps) {
     return (
-        <Box sx={{  display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", position: "relative" }}>
-            <Box sx={{width:"100%"}}>
+        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", position: "relative" }}>
+            <Box sx={{ width: "100%" }}>
                 <Typography
                     variant="h6"
                     className="text-primary bg-white p-4 pb-2 text-center !text-2xl !font-semibold"
@@ -25,14 +26,14 @@ function Sidebar({ isXs, drawerHandler, isOpen }) {
                 <List className="bg-primary">
                     <ListItem
                         component={ButtonBase}
-                        onClick={isXs ? drawerHandler : null}
+                        onClick={isXs ? drawerHandler : undefined}
                     >
                         <ListItemIcon><DashboardIcon className="!text-white" /></ListItemIcon>
                         <ListItemText className="!text-white" primary="Dashboards" />
                     </ListItem>
                     <ListItem
                         component={ButtonBase}
-                        onClick={isXs ? drawerHandler : null}
+                        onClick={isXs ? drawerHandler : undefined}
                     >
                         <ListItemIcon><StorageIcon className="!text-white" /></ListItemIcon>
                         <ListItemText className="!text-white" primary="Resource" />

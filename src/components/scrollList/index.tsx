@@ -2,8 +2,10 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { memo, useEffect, useRef, useState } from "react";
 import Style from "./style";
 import { debounce } from "../../utils/global-func";
+import { ITEMS_PER_PAGE } from "../../constants/dummy";
+import { ScrollListProps } from "../type";
 
-const ScrollList = ({ sideBarOpen, title, dummyData, ITEMS_PER_PAGE }) => {
+const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
     const scrollRef = useRef(null);
     const theme = useTheme();
     const isXs = useMediaQuery(theme.breakpoints.down("md"))
@@ -28,9 +30,6 @@ const ScrollList = ({ sideBarOpen, title, dummyData, ITEMS_PER_PAGE }) => {
     }, [currentPage]);
     return (
         <Grid
-            item
-            xs={12}
-            sm={4}
             sx={{
                 ...Style.cardWraper,
                 width: { xs: "100%", sm: sideBarOpen && isXs ? "100%" : "49%", md: "32%" },
@@ -49,7 +48,7 @@ const ScrollList = ({ sideBarOpen, title, dummyData, ITEMS_PER_PAGE }) => {
                     sx={Style.scrollContainer}
                     onScroll={handleScroll}
                 >
-                    {paginatedData.map((item, index) => (
+                    {paginatedData.map((item: any, index: number) => (
                         <Box
                             key={index}
                             sx={Style.itemBox}
