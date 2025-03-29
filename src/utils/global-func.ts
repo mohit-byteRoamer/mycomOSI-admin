@@ -1,7 +1,8 @@
-let interval: any;
-export const debounce = (callback: any, delay = 400) => {
-    clearTimeout(interval)
+let interval: ReturnType<typeof setTimeout>;
+
+export const debounce = (callback: () => void, delay: number = 400) => {
+    clearTimeout(interval);
     interval = setTimeout(() => {
-        callback()
+        callback();
     }, delay);
-}
+};

@@ -3,10 +3,11 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import StorageIcon from "@mui/icons-material/Storage";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { SidebarProps } from "../type";
+import Style from "./style";
 
 function Sidebar({ isXs, drawerHandler, isOpen }: SidebarProps) {
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", position: "relative" }}>
+        <Box sx={Style.container}>
             <Box sx={{ width: "100%" }}>
                 <Typography
                     variant="h6"
@@ -41,7 +42,7 @@ function Sidebar({ isXs, drawerHandler, isOpen }: SidebarProps) {
 
                 </List>
             </Box>
-            {isXs && <Box sx={{ display: "flex", justifyContent: "center", paddingBottom: 2.5 }}>
+            {isXs && <Box sx={Style.bottomButton}>
                 {
                     isOpen &&
                     <button onClick={drawerHandler}>

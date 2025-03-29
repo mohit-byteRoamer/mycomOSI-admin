@@ -1,4 +1,4 @@
-const dashboardStyles = {
+const Style = {
     container: {
         display: "flex",
         gap: "10px",
@@ -24,4 +24,4 @@ const dashboardStyles = {
 
 };
 
-export default dashboardStyles;
+export default Style;

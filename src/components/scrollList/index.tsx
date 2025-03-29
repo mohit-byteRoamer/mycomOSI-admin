@@ -4,6 +4,7 @@ import Style from "./style";
 import { debounce } from "../../utils/global-func";
 import { ITEMS_PER_PAGE } from "../../constants/dummy";
 import { ScrollListProps } from "../type";
+import { TreeNode } from "../../constants/type";
 
 const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
     const scrollRef = useRef(null);
@@ -48,7 +49,7 @@ const ScrollList = ({ sideBarOpen, title, dummyData, }: ScrollListProps) => {
                     sx={Style.scrollContainer}
                     onScroll={handleScroll}
                 >
-                    {paginatedData.map((item: any, index: number) => (
+                    {paginatedData.map((item: TreeNode, index: number) => (
                         <Box
                             key={index}
                             sx={Style.itemBox}
